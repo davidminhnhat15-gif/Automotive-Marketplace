@@ -1,0 +1,47 @@
+.saved-page {
+  padding: 50px 100px;
+  background: #f8fafc;
+  min-height: calc(100vh - 76px);
+}
+
+.saved-page h1 {
+  font-size: 34px;
+  margin-bottom: 24px;
+}
+
+.empty-text {
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  color: #6b7280;
+  font-size: 18px;
+}
+
+.saved-grid,
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.saved-card,
+.message-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.saved-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+
+.message-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

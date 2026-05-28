@@ -1,0 +1,298 @@
+.buying-guide-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(139, 92, 246, 0.12), transparent 24%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+  color: #111827;
+  padding: 36px 0 90px;
+}
+
+.buying-guide-container {
+  width: min(1180px, 90%);
+  margin: 0 auto;
+}
+
+.buying-guide-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.buying-guide-breadcrumb a {
+  color: #111827;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.buying-guide-hero {
+  max-width: 850px;
+  margin-bottom: 28px;
+}
+
+.buying-guide-hero p {
+  display: inline-flex;
+  margin: 0 0 14px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #efe7ff;
+  color: #6d28d9;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.buying-guide-hero h1 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 0.98;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.buying-guide-hero span {
+  display: block;
+  max-width: 720px;
+  margin-top: 18px;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+.inspection-overview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 36px 0 28px;
+}
+
+.inspection-overview div {
+  border: 1px solid #dfe7f1;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 22px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+}
+
+.inspection-overview strong {
+  display: block;
+  color: #6d28d9;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.inspection-overview span {
+  display: block;
+  margin-top: 8px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.guide-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.guide-sidebar {
+  position: sticky;
+  top: 98px;
+  border: 1px solid #dfe7f1;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 22px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+}
+
+.guide-sidebar h2 {
+  margin: 0 0 14px;
+  color: #111827;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.guide-sidebar a {
+  display: block;
+  border-radius: 13px;
+  padding: 11px 12px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.guide-sidebar a:hover {
+  background: #f3e8ff;
+  color: #6d28d9;
+}
+
+.guide-article {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guide-section-card {
+  border: 1px solid #dfe7f1;
+  border-radius: 24px;
+  background: #ffffff;
+  padding: 30px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.07);
+}
+
+.guide-section-card h2 {
+  margin: 0 0 20px;
+  color: #111827;
+  font-size: 31px;
+  line-height: 1.12;
+  font-weight: 900;
+}
+
+.guide-check-list {
+  display: grid;
+  gap: 14px;
+}
+
+.guide-check-item {
+  border-radius: 18px;
+  background: #f8fafc;
+  padding: 18px;
+  border: 1px solid #edf2f7;
+}
+
+.guide-check-item span {
+  display: block;
+  margin-bottom: 7px;
+  color: #6d28d9;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.guide-check-item p,
+.resource-card p {
+  margin: 0;
+  color: #334155;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.youtube-resource-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 360px) 1fr;
+  gap: 22px;
+  align-items: stretch;
+  margin-top: 24px;
+  border: 1px solid #dfe7f1;
+  border-radius: 24px;
+  background: #111827;
+  color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.16);
+}
+
+.youtube-video-frame {
+  min-height: 230px;
+  background: #020617;
+}
+
+.youtube-video-frame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 230px;
+  border: 0;
+  display: block;
+}
+
+.youtube-video-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 26px 28px 26px 4px;
+}
+
+.youtube-video-copy span {
+  width: fit-content;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.18);
+  color: #c4b5fd;
+  padding: 7px 11px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.youtube-video-copy h3 {
+  margin: 0;
+  max-width: 520px;
+  color: #ffffff;
+  font-size: 25px;
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.youtube-video-copy p {
+  margin: 12px 0 20px;
+  max-width: 560px;
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.youtube-video-copy a {
+  width: fit-content;
+  min-height: 44px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #111827;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .inspection-overview,
+  .guide-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .youtube-resource-card {
+    grid-template-columns: 1fr;
+  }
+
+  .youtube-video-copy {
+    padding: 0 24px 24px;
+  }
+
+  .guide-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .buying-guide-container {
+    width: calc(100% - 32px);
+  }
+
+  .guide-section-card {
+    padding: 22px;
+  }
+
+  .buying-guide-hero h1 {
+    font-size: 38px;
+  }
+}

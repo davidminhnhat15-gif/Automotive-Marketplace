@@ -1,0 +1,176 @@
+.research-page {
+  background: white;
+  color: #111827;
+}
+
+.research-hero {
+  padding: 90px 7%;
+  text-align: center;
+  background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+}
+
+.research-hero p {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #7c3aed;
+  font-weight: 800;
+}
+
+.research-hero h1 {
+  font-size: 54px;
+  font-weight: 900;
+  color: #002b6b;
+  margin: 18px 0;
+}
+
+.research-hero span {
+  display: block;
+  max-width: 720px;
+  margin: auto;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.research-section {
+  padding: 70px 7%;
+}
+
+.research-section.alt {
+  background: #f8fafc;
+}
+
+.research-section h2,
+.research-title-row h2,
+.research-article h2 {
+  font-size: 36px;
+  color: #002b6b;
+  font-weight: 900;
+}
+
+.tool-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.tool-card {
+  padding: 28px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.tool-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.tool-card p {
+  color: #6b7280;
+}
+
+.tool-card button,
+.guide-card button,
+.research-article button {
+  margin-top: 18px;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #8b3ff2, #6d28d9);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.research-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.research-title-row button {
+  border: none;
+  background: transparent;
+  color: #0057b8;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.guide-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e6ddff;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+}
+
+.guide-img {
+  height: 160px;
+  background: linear-gradient(180deg, #f8f5ff 0%, #ffffff 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.guide-img img {
+  width: 100%;
+  height: 100%;
+  max-width: 270px;
+  max-height: 120px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.guide-card div:last-child {
+  padding: 22px;
+}
+
+.guide-card h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.guide-card p {
+  color: #6b7280;
+}
+
+.research-article {
+  padding: 80px 7%;
+  text-align: center;
+}
+
+.research-article div {
+  max-width: 760px;
+  margin: auto;
+}
+
+.research-article p {
+  color: #6b7280;
+  font-size: 18px;
+  margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .tool-grid,
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .research-hero h1 {
+    font-size: 38px;
+  }
+}

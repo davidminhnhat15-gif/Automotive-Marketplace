@@ -1,0 +1,119 @@
+.messages-page {
+  min-height: calc(100vh - 76px);
+  background: #ffffff;
+}
+
+.messages-hero {
+  min-height: calc(100vh - 76px);
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff 0%,
+      #ffffff 34%,
+      rgba(255, 255, 255, 0.78) 48%,
+      rgba(255, 255, 255, 0.05) 100%
+    ),
+    url("https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1400");
+  background-size: cover;
+  background-position: center right;
+  display: flex;
+  align-items: center;
+}
+
+.messages-content {
+  width: 430px;
+  margin-left: 120px;
+}
+
+.messages-tag {
+  display: inline-block;
+  color: #8b3ff2;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+.messages-content h1 {
+  font-size: 48px;
+  line-height: 1.05;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 18px;
+}
+
+.messages-content p {
+  font-size: 16px;
+  line-height: 1.55;
+  color: #475569;
+  margin-bottom: 22px;
+}
+
+.messages-content button {
+  background: #8b3ff2;
+  color: #ffffff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-weight: 800;
+  cursor: pointer;
+  margin-bottom: 18px;
+}
+
+.messages-signin {
+  color: #111827 !important;
+}
+
+.messages-signin span {
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .messages-hero {
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.86)),
+      url("https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1000");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .messages-content {
+    margin-left: 24px;
+    width: calc(100% - 48px);
+  }
+
+  .messages-content h1 {
+    font-size: 38px;
+  }
+}
+
+.cta {
+  margin-top: 30px;
+}
+
+.cta button {
+  background: linear-gradient(135deg, #7c3aed, #9333ea);
+  color: white;
+  border: none;
+  padding: 16px 28px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  display: block;
+}
+
+/* dòng dưới */
+.cta span {
+  display: block;
+  margin-top: 18px;
+  font-size: 15px;
+  color: #374151;
+}
+
+/* chữ sign in */
+.cta b {
+  text-decoration: underline;
+  cursor: pointer;
+}

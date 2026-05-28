@@ -1,0 +1,199 @@
+.buy-page {
+  background: #fff;
+  color: #111827;
+}
+
+.buy-hero {
+  min-height: 420px;
+  padding: 80px 7%;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(255, 255, 255, 0.45)
+    ),
+    url("/img/home-hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.buy-hero div {
+  max-width: 560px;
+}
+
+.buy-tag {
+  display: inline-block;
+  background: #ede9fe;
+  color: #7c3aed;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.buy-hero h1 {
+  font-size: 52px;
+  font-weight: 900;
+  color: #002b6b;
+  margin-bottom: 12px;
+}
+
+.buy-hero p {
+  font-size: 18px;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.buy-hero button,
+.buy-cta button {
+  margin-top: 22px;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #8b3ff2, #6d28d9);
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.buy-section {
+  padding: 70px 7%;
+}
+
+.buy-section.alt {
+  background: #f8fafc;
+}
+
+.buy-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.buy-section h2,
+.buy-title-row h2,
+.buy-cta h2 {
+  font-size: 36px;
+  color: #002b6b;
+  font-weight: 900;
+}
+
+.buy-title-row button {
+  border: none;
+  background: transparent;
+  color: #0057b8;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.buy-style-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px;
+}
+
+.buy-style-card {
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #e6ddff;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #f8f5ff 0%, #ffffff 72%);
+  padding: 16px 14px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.buy-style-card:hover {
+  border-color: #a78bfa;
+  transform: translateY(-3px);
+  box-shadow: 0 18px 38px rgba(109, 40, 217, 0.12);
+}
+
+.buy-style-card div {
+  height: 126px;
+  border-radius: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.buy-style-card img {
+  width: 100%;
+  height: 100%;
+  max-width: 182px;
+  max-height: 94px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.buy-style-card h3 {
+  margin-top: 16px;
+  font-size: 17px;
+  font-weight: 800;
+  min-height: 44px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 1.25;
+}
+
+.brand-grid {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.brand-grid button {
+  height: 58px;
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.brand-grid button:hover {
+  border-color: #7c3aed;
+  color: #7c3aed;
+}
+
+.buy-cta {
+  padding: 80px 7%;
+  text-align: center;
+}
+
+.buy-cta p {
+  color: #6b7280;
+  margin-top: 10px;
+}
+
+@media (max-width: 1000px) {
+  .buy-style-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .buy-hero h1 {
+    font-size: 38px;
+  }
+
+  .buy-style-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
