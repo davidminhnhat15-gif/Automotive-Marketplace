@@ -6,6 +6,10 @@ import { getCars } from "../../services/carService";
 
 const comparisonStorageKey = "savedComparison";
 const emptySlots = [null, null];
+const comparePlaceholderImages = [
+  "/img/compare/compare1.jpg",
+  "/img/compare/compare2.jpg",
+];
 const popularCategoryConfig = [
   {
     title: "Hybrids/electric cars",
@@ -16,7 +20,9 @@ const popularCategoryConfig = [
   },
   {
     title: "Luxury cars",
-    match: (car) => normalizeBodyType(car.bodyType) === "Luxury" || Number(car.price || 0) >= 65000,
+    match: (car) =>
+      normalizeBodyType(car.bodyType) === "Luxury" ||
+      Number(car.price || 0) >= 65000,
   },
   {
     title: "Sedans",
@@ -50,6 +56,10 @@ function normalizeBodyType(bodyType = "") {
   if (value.includes("electric")) return "Electric";
   if (value.includes("luxury")) return "Luxury";
   return "Sedan";
+}
+
+function normalizeValue(value = "") {
+  return String(value).trim().toLowerCase();
 }
 
 function buildSpecs(car) {
@@ -86,9 +96,14 @@ function buildSpecs(car) {
       : suv
         ? "25 City / 32 Hwy"
         : "31 City / 40 Hwy";
-  const driveType = truck || suv || premium ? "All Wheel Drive" : "Front Wheel Drive";
+  const driveType =
+    truck || suv || premium ? "All Wheel Drive" : "Front Wheel Drive";
   const seats = truck || suv ? "5" : bodyType === "Convertible" ? "4" : "5";
-  const wheelSize = premium ? "20-inch alloy wheels" : suv ? "19-inch alloy wheels" : "18-inch alloy wheels";
+  const wheelSize = premium
+    ? "20-inch alloy wheels"
+    : suv
+      ? "19-inch alloy wheels"
+      : "18-inch alloy wheels";
 
   return {
     highlights: [
@@ -103,9 +118,19 @@ function buildSpecs(car) {
     ],
     engine: [
       ["Engine", engineType],
-      ["Transmission", electric ? "Single-speed automatic" : "8-speed automatic"],
+      [
+        "Transmission",
+        electric ? "Single-speed automatic" : "8-speed automatic",
+      ],
       ["Torque", electric ? "317 lb-ft" : premium ? "369 lb-ft" : "184 lb-ft"],
-      ["Fuel system", electric ? "Battery electric" : hybrid ? "Hybrid direct injection" : "Direct injection"],
+      [
+        "Fuel system",
+        electric
+          ? "Battery electric"
+          : hybrid
+            ? "Hybrid direct injection"
+            : "Direct injection",
+      ],
       ["Drivetrain", driveType],
     ],
     "tires-wheels": [
@@ -124,7 +149,10 @@ function buildSpecs(car) {
     ],
     brakes: [
       ["Brake type", "4-wheel disc brakes"],
-      ["Front brakes", premium ? "Ventilated performance disc" : "Ventilated disc"],
+      [
+        "Front brakes",
+        premium ? "Ventilated performance disc" : "Ventilated disc",
+      ],
       ["Rear brakes", "Solid disc"],
       ["ABS", "Standard"],
       ["Brake assist", "Standard"],
@@ -134,7 +162,10 @@ function buildSpecs(car) {
       ["Width", truck ? "80.0 in" : suv ? "74.0 in" : "72.4 in"],
       ["Height", truck ? "75.6 in" : suv ? "66.1 in" : "56.9 in"],
       ["Wheelbase", truck ? "145.0 in" : suv ? "108.9 in" : "111.2 in"],
-      ["Cargo volume", suv ? "37.6 cu.ft." : truck ? "52.8 cu.ft." : "15.1 cu.ft."],
+      [
+        "Cargo volume",
+        suv ? "37.6 cu.ft." : truck ? "52.8 cu.ft." : "15.1 cu.ft.",
+      ],
     ],
   };
 }
@@ -173,7 +204,10 @@ function CompareCars() {
   const [allCars, setAllCars] = useState([]);
   const [selectedCars, setSelectedCars] = useState(() =>
     location.pathname.includes("/results")
-      ? JSON.parse(localStorage.getItem(comparisonStorageKey) || "[]").slice(0, 2)
+      ? JSON.parse(localStorage.getItem(comparisonStorageKey) || "[]").slice(
+          0,
+          2,
+        )
       : [],
   );
   const [draftSelections, setDraftSelections] = useState([
@@ -225,7 +259,9 @@ function CompareCars() {
   }, []);
 
   const removeCar = (carId) => {
-    const nextCars = selectedCars.filter((car) => String(car.id) !== String(carId));
+    const nextCars = selectedCars.filter(
+      (car) => String(car.id) !== String(carId),
+    );
     setSelectedCars(nextCars);
     localStorage.setItem(comparisonStorageKey, JSON.stringify(nextCars));
   };
@@ -247,7 +283,10 @@ function CompareCars() {
     [
       ...new Set(
         allCars
-          .filter((car) => (!make || car.make === make) && (!model || car.model === model))
+          .filter(
+            (car) =>
+              (!make || car.make === make) && (!model || car.model === model),
+          )
           .map((car) => car.year)
           .filter(Boolean),
       ),
@@ -256,13 +295,13 @@ function CompareCars() {
   const updateSelectedCar = (slotIndex, draft) => {
     const matchedCar = allCars.find(
       (car) =>
-        car.make === draft.make &&
-        car.model === draft.model &&
+        normalizeValue(car.make) === normalizeValue(draft.make) &&
+        normalizeValue(car.model) === normalizeValue(draft.model) &&
         String(car.year) === String(draft.year),
     );
 
     if (!matchedCar) {
-      return;
+      return null;
     }
 
     const nextCars = [...selectedCars];
@@ -271,14 +310,21 @@ function CompareCars() {
 
     setSelectedCars(compactCars);
     localStorage.setItem(comparisonStorageKey, JSON.stringify(compactCars));
+    return matchedCar;
   };
 
   const handleSelectionChange = (slotIndex, field, value) => {
     setDraftSelections((current) => {
       const nextSelections = [...current];
+      const selectedCar = selectedCars[slotIndex];
       const currentDraft = nextSelections[slotIndex];
+      const baseDraft = {
+        make: currentDraft.make || selectedCar?.make || "",
+        model: currentDraft.model || selectedCar?.model || "",
+        year: currentDraft.year || selectedCar?.year || "",
+      };
       const nextDraft = {
-        ...currentDraft,
+        ...baseDraft,
         [field]: value,
       };
 
@@ -293,8 +339,19 @@ function CompareCars() {
 
       nextSelections[slotIndex] = nextDraft;
 
-      if (nextDraft.make && nextDraft.model && nextDraft.year) {
-        updateSelectedCar(slotIndex, nextDraft);
+      const hasCompleteSelection =
+        nextDraft.make && nextDraft.model && nextDraft.year;
+
+      if (hasCompleteSelection) {
+        const matchedCar = updateSelectedCar(slotIndex, nextDraft);
+
+        if (matchedCar) {
+          nextSelections[slotIndex] = {
+            make: matchedCar.make || "",
+            model: matchedCar.model || "",
+            year: matchedCar.year || "",
+          };
+        }
       }
 
       return nextSelections;
@@ -362,10 +419,16 @@ function CompareCars() {
           <section className="compare-result-hero">
             <div>
               <h1>{resultTitle}</h1>
-              <p>Review each vehicle side by side across price, engine, safety, brakes, wheels, and measurements.</p>
+              <p>
+                Review each vehicle side by side across price, engine, safety,
+                brakes, wheels, and measurements.
+              </p>
             </div>
 
-            <button className="compare-outline-btn" onClick={() => navigate("/compare-cars")}>
+            <button
+              className="compare-outline-btn"
+              onClick={() => navigate("/compare-cars")}
+            >
               Back to compare
             </button>
           </section>
@@ -373,8 +436,12 @@ function CompareCars() {
           {selectedCount === 0 ? (
             <section className="compare-empty-result">
               <h2>No cars selected yet</h2>
-              <p>Choose a popular comparison or add cars from Shop All first.</p>
-              <button onClick={() => navigate("/compare-cars")}>Choose cars</button>
+              <p>
+                Choose a popular comparison or add cars from Shop All first.
+              </p>
+              <button onClick={() => navigate("/compare-cars")}>
+                Choose cars
+              </button>
             </section>
           ) : (
             <>
@@ -409,7 +476,9 @@ function CompareCars() {
                     <input
                       type="checkbox"
                       checked={hideSimilarities}
-                      onChange={(event) => setHideSimilarities(event.target.checked)}
+                      onChange={(event) =>
+                        setHideSimilarities(event.target.checked)
+                      }
                     />
                   </label>
                 </div>
@@ -424,16 +493,23 @@ function CompareCars() {
                         onClick={() => toggleSection(section.id)}
                       >
                         <span>{section.title}</span>
-                        <FiChevronDown className={openSections[section.id] ? "open" : ""} />
+                        <FiChevronDown
+                          className={openSections[section.id] ? "open" : ""}
+                        />
                       </button>
 
                       {openSections[section.id] && (
                         <div className="spec-table">
                           {rows.length === 0 ? (
-                            <p className="all-similar">All visible values are similar.</p>
+                            <p className="all-similar">
+                              All visible values are similar.
+                            </p>
                           ) : (
                             rows.map((row) => (
-                              <div className="spec-row" key={`${section.id}-${row.label}`}>
+                              <div
+                                className="spec-row"
+                                key={`${section.id}-${row.label}`}
+                              >
                                 <div className="spec-label">{row.label}</div>
 
                                 {comparisonSlots.map((car, carIndex) => (
@@ -442,7 +518,9 @@ function CompareCars() {
                                     key={`${section.id}-${row.label}-${car?.id || carIndex}`}
                                   >
                                     {car
-                                      ? carSpecs[carIndex]?.[section.id]?.[row.index]?.[1] || "-"
+                                      ? carSpecs[carIndex]?.[section.id]?.[
+                                          row.index
+                                        ]?.[1] || "-"
                                       : "-"}
                                   </div>
                                 ))}
@@ -481,7 +559,7 @@ function CompareCars() {
         <section className="compare-start-grid" aria-label="Selected cars">
           {comparisonSlots.map((car, index) =>
             car ? (
-              <article className="compare-select-card" key={car.id}>
+              <article className="compare-select-card" key={`slot-${index}`}>
                 <button
                   className="remove-compare"
                   aria-label={`Remove ${car.title}`}
@@ -503,7 +581,7 @@ function CompareCars() {
                   <label>
                     <span>Make</span>
                     <select
-                      value={car.make || ""}
+                      value={draftSelections[index].make || car.make || ""}
                       onChange={(event) =>
                         handleSelectionChange(index, "make", event.target.value)
                       }
@@ -520,13 +598,17 @@ function CompareCars() {
                   <label>
                     <span>Model</span>
                     <select
-                      value={car.model || ""}
+                      value={draftSelections[index].model || car.model || ""}
                       onChange={(event) =>
-                        handleSelectionChange(index, "model", event.target.value)
+                        handleSelectionChange(
+                          index,
+                          "model",
+                          event.target.value,
+                        )
                       }
                     >
                       <option value="">Choose a model</option>
-                      {getModels(car.make).map((model) => (
+                      {getModels(draftSelections[index].make || car.make).map((model) => (
                         <option key={model} value={model}>
                           {model}
                         </option>
@@ -537,13 +619,16 @@ function CompareCars() {
                   <label>
                     <span>Year</span>
                     <select
-                      value={car.year || ""}
+                      value={draftSelections[index].year || car.year || ""}
                       onChange={(event) =>
                         handleSelectionChange(index, "year", event.target.value)
                       }
                     >
                       <option value="">Choose a year</option>
-                      {getYears(car.make, car.model).map((year) => (
+                      {getYears(
+                        draftSelections[index].make || car.make,
+                        draftSelections[index].model || car.model,
+                      ).map((year) => (
                         <option key={year} value={year}>
                           {year}
                         </option>
@@ -558,7 +643,10 @@ function CompareCars() {
                 key={`empty-${index}`}
               >
                 <div className="compare-select-image">
-                  <img src="/img/car.jpg" alt="Car placeholder" />
+                  <img
+                    src={comparePlaceholderImages[index]}
+                    alt={index === 0 ? "First car placeholder" : "Second car placeholder"}
+                  />
                 </div>
 
                 <div className="compare-select-body">
@@ -587,7 +675,11 @@ function CompareCars() {
                       value={draftSelections[index].model}
                       disabled={!draftSelections[index].make}
                       onChange={(event) =>
-                        handleSelectionChange(index, "model", event.target.value)
+                        handleSelectionChange(
+                          index,
+                          "model",
+                          event.target.value,
+                        )
                       }
                     >
                       <option value="">Choose a model</option>
@@ -643,7 +735,10 @@ function CompareCars() {
 
           <div className="comparison-list">
             {comparisonGroups.map((category) => (
-              <details key={category.title} open={!!openComparisonGroups[category.title]}>
+              <details
+                key={category.title}
+                open={!!openComparisonGroups[category.title]}
+              >
                 <summary
                   onClick={(event) => {
                     event.preventDefault();
@@ -673,7 +768,6 @@ function CompareCars() {
             ))}
           </div>
         </section>
-
       </div>
     </main>
   );

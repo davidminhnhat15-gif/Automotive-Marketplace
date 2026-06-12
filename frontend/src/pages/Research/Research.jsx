@@ -9,19 +9,19 @@ function Research() {
       title: "Best EVs & Hybrids",
       text: "Explore efficient electric and hybrid vehicles.",
       path: "/cars/electric",
-      img: "/img/styles/electric.png",
+      img: "/img/styles/Electric.png",
     },
     {
       title: "Best SUVs",
       text: "Find spacious and reliable SUVs for daily use.",
       path: "/cars/suv",
-      img: "/img/styles/suv.png",
+      img: "/img/styles/Suv.png",
     },
     {
       title: "Best Sedans",
       text: "Compare comfortable sedans with great value.",
       path: "/cars/sedan",
-      img: "/img/styles/sedan.png",
+      img: "/img/styles/Sedan.png",
     },
   ];
 
